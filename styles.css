@@ -1,0 +1,25 @@
+.inline-stopwatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.inline-stopwatch-button {
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  padding: 0;
+}
+.inline-stopwatch-timeline {
+  position: relative;
+  width: 100px;
+  height: 4px;
+  background-color: var(--background-secondary);
+}
+.inline-stopwatch-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--text-normal);
+  width: 0;
+}
