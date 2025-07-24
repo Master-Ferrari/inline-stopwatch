@@ -1,5 +1,6 @@
 import { Plugin, MarkdownPostProcessorContext, TFile } from 'obsidian';
 
+
 interface StopwatchSettings {
     passed: number; // seconds
     limit?: number; // seconds
@@ -14,12 +15,14 @@ interface ParsedSpec {
 export default class InlineStopwatchPlugin extends Plugin {
     onload() {
         this.registerMarkdownPostProcessor((el, ctx) => {
+
             const codes = el.querySelectorAll('code');
             codes.forEach(code => {
                 const text = code.textContent?.trim();
                 if (!text || !text.startsWith('stopwatch')) return;
                 const parsed = parseSpec(text);
                 const comp = createStopwatch(parsed.spec, this, ctx, text, parsed.hasPassed);
+
                 code.replaceWith(comp);
             });
         });
@@ -27,6 +30,7 @@ export default class InlineStopwatchPlugin extends Plugin {
 }
 
 function parseSpec(text: string): ParsedSpec {
+
     const record: Record<string, string> = {};
     const regex = /(name|passed|limit):\s*([^\s]+)/g;
     let match: RegExpExecArray | null;
@@ -38,6 +42,7 @@ function parseSpec(text: string): ParsedSpec {
     const limit = record['limit'] ? parseTime(record['limit']) : undefined;
     const name = record['name'];
     return { spec: { passed, limit, name }, hasPassed };
+
 }
 
 function parseTime(str: string): number {
@@ -76,6 +81,7 @@ function createStopwatch(
     original: string,
     hasPassed: boolean
 ): HTMLElement {
+
     const container = document.createElement('span');
     container.addClass('inline-stopwatch');
 
@@ -95,6 +101,7 @@ function createStopwatch(
         );
     };
     setIcon(false);
+
 
     const nameSpan = document.createElement('span');
     if (spec.name) {
@@ -132,6 +139,7 @@ function createStopwatch(
         timeSpan.textContent = formatTime(elapsed);
         if (fill && spec.limit) {
             const cycle = elapsed % (spec.limit * 2);
+
             let progress = 0;
             if (cycle < spec.limit) {
                 progress = cycle / spec.limit;
@@ -169,6 +177,7 @@ function createStopwatch(
             const diff = Math.floor((Date.now() - start) / 1000);
             currentPassed += diff;
             await updatePassedInFile(currentPassed);
+
         }
     };
 

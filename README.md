@@ -10,6 +10,7 @@ Use the following syntax inside code spans:
 
 Optional parameters `name`, `limit`, and `passed` can be added in any order. `passed` defaults to `00:00:00` and is automatically inserted after the stopwatch is started:
 
+
 ```
 `stopwatch name: Pomodoro passed: 00:00:00 limit: 00:25:00`
 ```
