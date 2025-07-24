@@ -16,3 +16,9 @@ Optional parameters `name` and `limit` can be added in any order:
 
 When rendered, the code snippet is replaced with a play/pause button, the name
 (if provided), the elapsed time and, if a limit is set, a progress bar.
+
+## Building
+
+Run `npm install` and then `npm run build` to generate `main.js` in the plugin
+folder. Copy the entire folder into your vault's `plugins` directory to use the
+plugin.
