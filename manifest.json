@@ -1,0 +1,10 @@
+{
+  "id": "inline-stopwatch",
+  "name": "Inline Stopwatch",
+  "version": "0.0.1",
+  "minAppVersion": "0.15.0",
+  "description": "Embed inline stopwatches inside your notes.",
+  "author": "Codex",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
