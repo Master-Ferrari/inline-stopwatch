@@ -6,6 +6,8 @@ interface StopwatchSettings {
     name?: string;
 }
 
+console.log('Inline Stopwatch');
+
 export default class InlineStopwatchPlugin extends Plugin {
     onload() {
         this.registerMarkdownPostProcessor((el) => {
