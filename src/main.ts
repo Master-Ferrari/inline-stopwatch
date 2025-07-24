@@ -56,22 +56,19 @@ export interface StopwatchSpec {
  *
  * Если что‑то отсутствует, подставляет дефолты.
  */
-export function parseSnippet(
-    raw: string,
-    defaults: InlineStopwatchSettings
-): StopwatchSpec {
-    const rec: Record<string, string> = {};
-    const re = /(id|name|passed|limit|running):\s*([^\s]+)/g;
-    for (let m; (m = re.exec(raw));) rec[m[1]] = m[2];
+const re = new RegExp(
+    "stopwatch\b(?:\s*(?:id:(?<id>\d+)|name: *?\"(?<name>[^\"]+)\"|passed: *?(?<passed>\d+)|limit: *?(?<limit>\d+)|running:(?<running> *?yes|no)|[^]))*"
+    , "gm");
 
-    return {
-        id: rec.id ?? "",
-        passed: rec.passed ? parseTime(rec.passed) : 0,
-        limit: rec.limit ? parseTime(rec.limit) : defaults.defaultLimit,
-        name: rec.name,
-        running: rec.running === "yes"
-    };
-}
+export const parseSnippet = (src: string): StopwatchSpec[] =>
+    [...src.matchAll(re)].map(({ groups: g = {} as any }) => ({
+        id: g.id ?? "",
+        passed: +(g.passed ?? 0),
+        limit: +(g.limit ?? 0),
+        name: g.name,
+        running: (g.running ?? "no") === "yes",
+    }));
+
 
 /**
  * Сериализует структуру обратно в строку (для сохранения в заметку).
