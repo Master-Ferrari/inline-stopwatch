@@ -1,32 +1,89 @@
-.inline-stopwatch {
+/* wrapper */
+.inline-stopwatch-wrapper {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  vertical-align: middle;
 }
+
+/* кнопка */
 .inline-stopwatch-button {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 26px;
   padding: 0;
+  padding-left: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--background-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  border: none;
+  cursor: pointer;
+  border-radius: 6px 0 0 6px;
+  margin-right: 2px;
+
 }
-.inline-stopwatch-button svg {
-  width: 10px;
-  height: 10px;
+
+.theme-dark .inline-stopwatch-button svg {
   fill: #fff;
 }
-.inline-stopwatch-timeline {
-  position: relative;
-  width: 100px;
-  height: 4px;
-  background-color: var(--background-secondary);
+
+.theme-light .inline-stopwatch-button svg {
+  fill: #000;
 }
-.inline-stopwatch-fill {
+
+.inline-stopwatch-button svg {
+  width: 8px;
+  height: 8px;
+}
+
+/* островок */
+.inline-stopwatch-island {
+  border: 1px solid var(--background-modifier-border);
+  box-sizing: border-box;
+  /* padding: 1px; */
+  /* padding: 2px 0; */
+
+
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* равные интервалы */
+  padding: 4px 0px;
+  padding-bottom: 4px;
+  /* горизонтальный padding убран */
+  background: var(--background-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  border-radius: 0 6px 6px 0;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* текст / время */
+.inline-stopwatch-time {
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.inline-stopwatch-muted {
+  color: var(--text-muted);
+}
+
+/* прогресс‑бар */
+.inline-stopwatch-timeline {
   position: absolute;
   left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--background-modifier-border);
+}
+
+.inline-stopwatch-fill {
+  position: absolute;
   top: 0;
   bottom: 0;
-  background-color: var(--text-normal);
+  background: var(--interactive-accent);
   width: 0;
 }
