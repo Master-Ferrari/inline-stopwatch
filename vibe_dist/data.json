@@ -1,0 +1,85 @@
+{
+  "settings": {
+    "defaultLimit": 60,
+    "autosaveInterval": 10,
+    "minIslandWidth": 200
+  },
+  "runtime": {
+    "fhl0j1": {
+      "passed": 77,
+      "running": false
+    },
+    "4x4eo1": {
+      "passed": 2544,
+      "running": true
+    },
+    "gkhzvx": {
+      "passed": 2263,
+      "running": true
+    },
+    "dnayv1": {
+      "passed": 3002,
+      "running": true
+    },
+    "iwfnrt": {
+      "passed": 652,
+      "running": false
+    },
+    "ex1kz3": {
+      "passed": 3332,
+      "running": true
+    },
+    "9bofxf": {
+      "passed": 1545,
+      "running": true
+    },
+    "odbw5f": {
+      "passed": 3765,
+      "running": true
+    },
+    "gkh3zvx": {
+      "passed": 2357,
+      "running": true
+    },
+    "": {
+      "passed": 0,
+      "running": false
+    },
+    "gdk9pg": {
+      "passed": 1110,
+      "running": false
+    },
+    "gdk39pg": {
+      "passed": 53742,
+      "running": false
+    },
+    "gdk92pg": {
+      "passed": 222,
+      "running": false
+    },
+    "gdk59pg": {
+      "passed": 1,
+      "running": false
+    },
+    "gdk79pg": {
+      "passed": 0,
+      "running": false
+    },
+    "gdkda9pg": {
+      "passed": 221,
+      "running": false
+    },
+    "gdka9pg": {
+      "passed": 200,
+      "running": false
+    },
+    "vechzq": {
+      "passed": 0,
+      "running": false
+    },
+    "sf4763": {
+      "passed": 0,
+      "running": false
+    }
+  }
+}
