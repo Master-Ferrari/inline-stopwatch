@@ -38,7 +38,7 @@ export class TagParser<S extends ParamsStructure> {
         /* делим строку так, чтобы каждый фрагмент начинался с имени тега */
         let parts: string[] = [chunk];
         this.tagList.forEach(tag => {
-            parts = parts.flatMap(p => p.split(new RegExp(`(?=${tag}\\s*:)`, "g")));
+            parts = parts.flatMap(p => p.split(new RegExp(`(?=${tag}\\s*:)`, "gm")));
         });
         parts = parts.filter(Boolean).map(p => p.trim());
 

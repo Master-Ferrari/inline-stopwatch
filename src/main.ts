@@ -8,46 +8,40 @@ import {
     TFile
 } from "obsidian";
 
+import z from "zod";
+import { TagSyntaxHandler } from "./TagSyntaxHandler";
+import { parse } from "path";
 
-import { ParamsStructure, TagParser } from "./parser";
-import { TagManager } from "./tagManager";
-
-const paramsStructure = {
-    id: { tagName: "id", innerType: "string" },
-    passed: { tagName: "passed", innerType: "integer" },
-    limit: { tagName: "limit", innerType: "integer" },
-    name: { tagName: "name", innerType: "string" },
-    running: { tagName: "running", innerType: "yesno" },
-} as const satisfies ParamsStructure;
-
-
-// import { tagManager } from "./snippet";
-
-const tagParser = new TagParser("stopwatch", paramsStructure);
+const stopwatchSchema = z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+    limit: z.coerce.number().int().positive().optional(),
+    startDate: z.string().optional(),
+    passed: z.coerce.number().int().nonnegative().optional(),
+    running: z.enum(["yes", "no"]).optional(),
+});
 
 export default class ExamplePlugin extends Plugin {
     async onload() {
 
-        const tagManager = new TagManager();
-        this.registerMarkdownPostProcessor((element) => {
-            // const codeblocks = element.findAll('code');
+        const stopwatchSyntaxHandler = new TagSyntaxHandler(stopwatchSchema, "stopwatch");
 
-            // for (let codeblock of codeblocks) {
-            //     console.log("found:", tagParser.start(codeblock.textContent ?? ""));
-            // }
 
-            // console.log(element.innerHTML);
-            tagManager.parse(element)?.draw();
-            // tagManager.draw();
+        this.registerMarkdownCodeBlockProcessor("stopwatch", (source, el, ctx) => {
+            console.log("source", source);
+            const parsed = stopwatchSyntaxHandler.parse(source);
+            console.log("parsed", parsed.success ? parsed.result : parsed.error);
+
+            if (!parsed.success) {
+                el.createEl("div", { text: `Syntax Error. ${parsed.error}` });
+                return;
+            }
+
+            const serialized = stopwatchSyntaxHandler.write(parsed.result);
+            el.createEl("div", { text: serialized });
         });
 
         const file = this.app.workspace.getActiveFile();
         if (!file) return;
-
-        // const content = await this.app.vault.read(file);
-        // this.app.vault.modify(file, content + "жопа");
-
-        tagManager.print();
-        // tagManager.write();
     }
 }

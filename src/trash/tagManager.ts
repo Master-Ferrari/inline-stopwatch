@@ -141,23 +141,27 @@ export class TagManager {
         running: false,
     }
 
-    parse(element: HTMLElement): Tag | null {
-        const codeblocks = element.findAll('code');
-        for (let codeblock of codeblocks) {
-            const parsed = tagParser.start(codeblock.textContent ?? "");
-            if (parsed) {
-                if (!parsed.id) {
-                    parsed.id = this.newId();
+    parse(elements: HTMLElement[]): Tag[] {
+        console.log("Parsing element:", elements);
+        const findedTags: Tag[] = [];
+        elements.forEach(element => {
+            const codeblocks = element.findAll('code');
+            for (let codeblock of codeblocks) {
+                const parsed = tagParser.start(codeblock.textContent ?? "");
+                if (parsed) {
+                    if (!parsed.id) {
+                        parsed.id = this.newId();
+                    }
+                    if (this.tags[parsed.id]) {
+                        parsed.id = this.newId();
+                    }
+                    const tag = new Tag(codeblock, parsed, this.defaultTag);
+                    this.tags[parsed.id] = tag;
+                    findedTags.push(tag);
                 }
-                if (this.tags[parsed.id]) {
-                    parsed.id = this.newId();
-                }
-                const tag = new Tag(codeblock, parsed, this.defaultTag);
-                this.tags[parsed.id] = tag;
-                return tag;
             }
-        }
-        return null;
+        })
+        return findedTags;
     }
 
     private newId(): string {

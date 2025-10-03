@@ -3,6 +3,8 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+  width: 122px;
+  margin: -5px 5px;
 }
 
 /* кнопка */
