@@ -3,16 +3,17 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  width: 122px;
-  margin: -5px 5px;
+  width: fit-content;
+  padding: var(--size-4-1) var(--size-4-10) var(--size-4-1) var(--size-4-1);
+  /* margin: -5px 5px; */
 }
 
 /* кнопка */
 .inline-stopwatch-button {
-  width: 21px;
-  height: 26px;
+  width: var(--size-4-6);
+  height: var(--size-4-7);
   padding: 0;
-  padding-left: 1px;
+  padding-left: var(--size-2-1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,10 +21,10 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
   border: none;
   cursor: pointer;
-  border-radius: 6px 0 0 6px;
-  margin-right: 2px;
+  border-radius: var(--size-4-2) 0 0 var(--size-4-2);
+  margin-right: var(--size-2-1);
 
-  height: 30px;
+  height: var(--size-4-8);
 }
 
 .theme-dark .inline-stopwatch-button svg {
@@ -35,34 +36,37 @@
 }
 
 .inline-stopwatch-button svg {
-  width: 8px;
-  height: 8px;
+  width: var(--size-4-2);
+  height: var(--size-4-2);
 }
 
 /* островок */
 .inline-stopwatch-island {
-  border: 1px solid var(--background-modifier-border);
+  border: var(--size-2-1) solid var(--background-modifier-border);
   box-sizing: border-box;
   /* padding: 1px; */
   /* padding: 2px 0; */
+  padding: var(--size-4-1) var(--size-4-1);
 
-
+  margin-right: 3px;
 
   display: inline-flex;
   align-items: center;
   justify-content: space-evenly;
   /* равные интервалы */
-  padding: 4px 0px;
-  padding-bottom: 4px;
+  /* padding: 4px 0px;
+  padding-bottom: 4px; */
   /* горизонтальный padding убран */
   background: var(--background-secondary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 var(--size-4-2) var(--size-4-2) 0;
   line-height: 1;
   position: relative;
   overflow: hidden;
 
-  height: 30px;
+  white-space: nowrap;
+
+  height: var(--size-4-8);
 }
 
 /* текст / время */
@@ -81,7 +85,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 3px;
+  height: calc(var(--size-4-1)/4*3);
   background: var(--background-modifier-border);
 }
 
@@ -91,4 +95,10 @@
   bottom: 0;
   background: var(--interactive-accent);
   width: 0;
+}
+
+/* стили для кнопки редактирования блока */
+.edit-block-button.inline-stopwatch-positioned {
+  position: absolute;
+  top: calc(100% - var(--btn-height) / 2);
 }
